@@ -37,13 +37,24 @@ public class Main {
         });
         session.setDebug(true);
         while (num > 0) {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(sender));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
-            message.setSubject(subject);
-            message.setText(text);
-            Transport.send(message);
-            num -= 1;
+            if (text.equals("/0")) {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+                message.setSubject(subject + "/0");
+                message.setText(text);
+                Transport.send(message);
+                num -= 1;
+            }
+            else {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+                message.setSubject(subject);
+                message.setText(text);
+                Transport.send(message);
+                num -= 1;
+            }
         }
     }
 }
