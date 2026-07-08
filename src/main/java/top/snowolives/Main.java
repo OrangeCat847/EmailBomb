@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("EmailBombV1 -.-.-.-.-");
-        System.out.println("Version 1.0");
+        System.out.println("Version 1.1");
         System.out.println("Made by Christina(YukitaRiko)");
         System.out.println("Github Package: https://github.com/Orangecat847/EmailBomb");
         System.err.print("Please enter a SMTP Server: ");
