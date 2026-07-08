@@ -37,7 +37,7 @@ public class Main {
         });
         session.setDebug(true);
         while (num > 0) {
-            if (text.equals("/0")) {
+            if (subject.equals("/0")) {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(sender));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
